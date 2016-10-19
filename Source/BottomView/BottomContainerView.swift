@@ -34,6 +34,8 @@ open class BottomContainerView: UIView {
 
   open lazy var doneButton: UIButton = { [unowned self] in
     let button = UIButton()
+    // Added by mbecker: Change background to clear
+    button.backgroundColor = UIColor.clear
     button.setTitle(Configuration.cancelButtonTitle, for: UIControlState())
     button.titleLabel?.font = Configuration.doneButton
     button.addTarget(self, action: #selector(doneButtonDidPress(_:)), for: .touchUpInside)

@@ -74,7 +74,12 @@ class ButtonPicker: UIButton {
 
   func recalculatePhotosCount(_ notification: Notification) {
     guard let sender = notification.object as? ImageStack else { return }
-    numberLabel.text = sender.assets.isEmpty ? "" : String(sender.assets.count)
+    // Added by mbecker: Change user how many images are left to add
+    if sender.assets.isEmpty {
+        numberLabel.text = ""
+    } else {
+        numberLabel.text = Configuration.imageLimit == 0 ? String(sender.assets.count) : String(sender.assets.count) + "/" + String(Configuration.imageLimit)
+    }
   }
 
   func pickerButtonDidPress(_ button: UIButton) {
@@ -86,6 +91,6 @@ class ButtonPicker: UIButton {
 
   func pickerButtonDidHighlight(_ button: UIButton) {
     numberLabel.textColor = UIColor.white
-    backgroundColor = UIColor(red:0.3, green:0.3, blue:0.3, alpha:1)
+    backgroundColor = Configuration.pickerButtonTouchBackgroundColor
   }
 }

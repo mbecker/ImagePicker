@@ -221,6 +221,8 @@ extension ImageGalleryView: UICollectionViewDelegate {
           cell.selectedImageView.transform = CGAffineTransform.identity
         }) 
         self.selectedStack.pushAsset(asset)
+        // Added by mbecker: User selects image from ImageGalleryView
+        print(":: ImageGalleryView - selected image")
       }
     }
   }

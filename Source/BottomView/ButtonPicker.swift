@@ -6,6 +6,8 @@ protocol ButtonPickerDelegate: class {
 }
 
 class ButtonPicker: UIButton {
+  
+  var imagesSelectedLimit = false
 
   struct Dimensions {
     static let borderWidth: CGFloat = 2
@@ -68,6 +70,7 @@ class ButtonPicker: UIButton {
     accessibilityLabel = "Take photo"
     addTarget(self, action: #selector(pickerButtonDidPress(_:)), for: .touchUpInside)
     addTarget(self, action: #selector(pickerButtonDidHighlight(_:)), for: .touchDown)
+    addTarget(self, action: #selector(pickerButtonDidHighlight2(_:)), for: .touchUpOutside)
   }
 
   // MARK: - Actions
@@ -80,11 +83,20 @@ class ButtonPicker: UIButton {
     } else {
         numberLabel.text = Configuration.imageLimit == 0 ? String(sender.assets.count) : String(sender.assets.count) + "/" + String(Configuration.imageLimit)
     }
+    
+    if sender.assets.count == Configuration.imageLimit {
+      self.imagesSelectedLimit = true
+      backgroundColor = Configuration.pickerButtonDoneBackgroundColor
+      numberLabel.textColor = UIColor.white
+      numberLabel.text = Configuration.imageLimit == 0 ? String(sender.assets.count) : "Upload"
+    } else {
+      backgroundColor = UIColor.white
+    }
   }
 
   func pickerButtonDidPress(_ button: UIButton) {
-    backgroundColor = UIColor.white
-    numberLabel.textColor = UIColor.black
+    backgroundColor = Configuration.pickerButtonTouchBackgroundColor
+    numberLabel.textColor = UIColor.white
     numberLabel.sizeToFit()
     delegate?.buttonDidPress()
   }
@@ -92,5 +104,14 @@ class ButtonPicker: UIButton {
   func pickerButtonDidHighlight(_ button: UIButton) {
     numberLabel.textColor = UIColor.white
     backgroundColor = Configuration.pickerButtonTouchBackgroundColor
+  }
+  
+  func pickerButtonDidHighlight2(_ button: UIButton) {
+    if imagesSelectedLimit {
+      backgroundColor = Configuration.pickerButtonDoneBackgroundColor
+    } else {
+      backgroundColor = UIColor.white
+    }
+    numberLabel.textColor = UIColor.white
   }
 }

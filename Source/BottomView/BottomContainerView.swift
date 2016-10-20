@@ -37,6 +37,8 @@ open class BottomContainerView: UIView {
     // Added by mbecker: Change background to clear
     button.backgroundColor = UIColor.clear
     button.setTitle(Configuration.cancelButtonTitle, for: UIControlState())
+    // Added by mbecker: Change color of cancel button to Configuration
+    button.setTitleColor(Configuration.cancelButtonColor, for: UIControlState())
     button.titleLabel?.font = Configuration.doneButton
     button.addTarget(self, action: #selector(doneButtonDidPress(_:)), for: .touchUpInside)
 
@@ -66,7 +68,7 @@ open class BottomContainerView: UIView {
 
   public override init(frame: CGRect) {
     super.init(frame: frame)
-
+    
     [borderPickerButton, pickerButton, doneButton, stackView, topSeparator].forEach {
       addSubview($0)
       $0.translatesAutoresizingMaskIntoConstraints = false
@@ -86,11 +88,13 @@ open class BottomContainerView: UIView {
   // MARK: - Action methods
 
   func doneButtonDidPress(_ button: UIButton) {
-    if button.currentTitle == Configuration.cancelButtonTitle {
-      delegate?.cancelButtonDidPress()
-    } else {
-      delegate?.doneButtonDidPress()
-    }
+//    if button.currentTitle == Configuration.cancelButtonTitle {
+//      delegate?.cancelButtonDidPress()
+//    } else {
+//      delegate?.doneButtonDidPress()
+//    }
+    // Added by mbecker: Update of done and cancel button; only show cancel button
+    delegate?.cancelButtonDidPress()
   }
 
   func handleTapGestureRecognizer(_ recognizer: UITapGestureRecognizer) {
@@ -118,3 +122,4 @@ extension BottomContainerView: ButtonPickerDelegate {
     delegate?.pickerButtonDidPress()
   }
 }
+

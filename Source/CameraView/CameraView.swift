@@ -133,6 +133,18 @@ class CameraView: UIViewController, CLLocationManagerDelegate, CameraManDelegate
 
     previewLayer = layer
   }
+  
+  func setupImageLayer(image: UIImage) {
+    
+    let imageView = UIImageView(image: image)
+    if image.size.height > image.size.width {
+      imageView.frame = view.layer.frame
+    }else {
+      
+      imageView.frame = view.layer.frame
+    }
+    view.addSubview(imageView)
+  }
 
   // MARK: - Layout
 
@@ -262,4 +274,5 @@ class CameraView: UIViewController, CLLocationManagerDelegate, CameraManDelegate
   func cameraManDidStart(_ cameraMan: CameraMan) {
     setupPreviewLayer()
   }
+  
 }

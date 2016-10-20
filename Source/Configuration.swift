@@ -10,12 +10,15 @@ public struct Configuration {
     public static var noCameraColor = UIColor(red: 0.86, green: 0.86, blue: 0.86, alpha: 1)
     public static var settingsColor = UIColor.white
     // Added by mbecker: Let the backgorund color for the pressed picker button be configurable
-    public static var pickerButtonTouchBackgroundColor = UIColor(red:0.3, green:0.3, blue:0.3, alpha:1)
+    public static var pickerButtonTouchBackgroundColor = UIColor(red:0.18, green:0.55, blue:0.84, alpha:1.00) // Flat Sky Blue
+    public static var pickerButtonDoneBackgroundColor = UIColor(red:0.10, green:0.71, blue:0.57, alpha:1.00) // Flat Mint
+    public static var doneButtonColor = UIColor(red:1.00, green:0.78, blue:0.02, alpha:1.00)
+    public static var cancelButtonColor = UIColor(red:0.93, green:0.40, blue:0.44, alpha:1.00)
     
     // MARK: Fonts
     
-    public static var numberLabelFont = UIFont(name: "HelveticaNeue-Bold", size: 19)!
-    public static var doneButton = UIFont(name: "HelveticaNeue-Medium", size: 19)!
+    public static var numberLabelFont = UIFont(name: "HelveticaNeue-Bold", size: 16)!
+    public static var doneButton = UIFont(name: "HelveticaNeue-Medium", size: 16)!
     public static var flashButton = UIFont(name: "HelveticaNeue-Medium", size: 12)!
     public static var noImagesFont = UIFont(name: "HelveticaNeue-Medium", size: 18)!
     public static var noCameraFont = UIFont(name: "HelveticaNeue-Medium", size: 18)!

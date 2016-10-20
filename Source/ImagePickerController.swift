@@ -1,15 +1,17 @@
 import UIKit
 import MediaPlayer
 import Photos
+import TOCropViewController
 
 @objc public protocol ImagePickerDelegate: class {
 
   func wrapperDidPress(_ imagePicker: ImagePickerController, images: [UIImage])
-  func doneButtonDidPress(_ imagePicker: ImagePickerController, images: [UIImage])
+  func doneButtonDidPress(_ imagePicker: ImagePickerController, original: [UIImage], images: [UIImage])
   func cancelButtonDidPress(_ imagePicker: ImagePickerController)
+  
 }
 
-open class ImagePickerController: UIViewController {
+open class ImagePickerController: UIViewController, TOCropViewControllerDelegate {
 
   struct GestureConstants {
     static let maximumHeight: CGFloat = 200
@@ -242,11 +244,18 @@ open class ImagePickerController: UIViewController {
   }
 
   func adjustButtonTitle(_ notification: Notification) {
-    guard let sender = notification.object as? ImageStack else { return }
-
-    let title = !sender.assets.isEmpty ?
-      Configuration.doneButtonTitle : Configuration.cancelButtonTitle
-    bottomContainer.doneButton.setTitle(title, for: UIControlState())
+    
+    // Added by mbecker: Disable "done" button; show only "cancel" button
+    
+//    guard let sender = notification.object as? ImageStack else { return }
+    
+//    if sender.assets.isEmpty {
+//      bottomContainer.doneButton.setTitle(Configuration.cancelButtonTitle, for: UIControlState())
+//      bottomContainer.doneButton.setTitleColor(Configuration.cancelButtonColor, for: UIControlState())
+//    } else {
+//      bottomContainer.doneButton.setTitle(Configuration.doneButtonTitle, for: UIControlState())
+//      bottomContainer.doneButton.setTitleColor(Configuration.doneButtonColor, for: UIControlState())
+//    }
   }
 
   // MARK: - Helpers
@@ -328,7 +337,13 @@ open class ImagePickerController: UIViewController {
 extension ImagePickerController: BottomContainerViewDelegate {
 
   func pickerButtonDidPress() {
-    takePicture()
+    // Added by mbecker: If image is selected from library go to crop
+    if isBelowImageLimit() {
+      takePicture()
+    } else {
+      doneButtonDidPress()
+    }
+    
   }
 
   func doneButtonDidPress() {
@@ -338,8 +353,20 @@ extension ImagePickerController: BottomContainerViewDelegate {
     } else {
       images = AssetManager.resolveAssets(stack.assets)
     }
+    
+    // Added by mbecker: Crop
+    let cropViewController = TOCropViewController(image: images[0])
+    cropViewController.delegate = self
+    cropViewController.aspectRatioLockEnabled = true
+    cropViewController.resetAspectRatioEnabled = false
+    cropViewController.aspectRatioPickerButtonHidden = true // Buton to select different ratios
+    cropViewController.customAspectRatio = CGSize(width: 375, height: 300)
+    cropViewController.rotateButtonsHidden = false
+    cropViewController.rotateClockwiseButtonHidden = false
+    
+    self.present(cropViewController, animated: true, completion: nil)
 
-    delegate?.doneButtonDidPress(self, images: images)
+//    delegate?.doneButtonDidPress(self, images: images)
   }
 
   func cancelButtonDidPress() {
@@ -371,6 +398,19 @@ extension ImagePickerController: CameraViewDelegate {
     galleryView.fetchPhotos() {
       guard let asset = self.galleryView.assets.first else { return }
       self.stack.pushAsset(asset)
+      
+      // Added by mbecker: Crop
+      let images = AssetManager.resolveAssets(self.stack.assets)
+      let cropViewController = TOCropViewController(image: images[0])
+      cropViewController.delegate = self
+      cropViewController.aspectRatioLockEnabled = true
+      cropViewController.resetAspectRatioEnabled = false
+      cropViewController.aspectRatioPickerButtonHidden = true // Buton to select different ratios
+      cropViewController.customAspectRatio = CGSize(width: 375, height: 300)
+      cropViewController.rotateButtonsHidden = false
+      cropViewController.rotateClockwiseButtonHidden = false
+      self.present(cropViewController, animated: true, completion: nil)
+      
     }
     galleryView.shouldTransform = true
     bottomContainer.pickerButton.isEnabled = true
@@ -379,7 +419,10 @@ extension ImagePickerController: CameraViewDelegate {
       self.galleryView.collectionView.transform = CGAffineTransform(translationX: collectionSize.width, y: 0)
       }, completion: { _ in
         self.galleryView.collectionView.transform = CGAffineTransform.identity
-    }) 
+    })
+    
+    
+    
   }
 
   func cameraNotAvailable() {
@@ -496,6 +539,16 @@ extension ImagePickerController: ImageGalleryPanGestureDelegate {
       expandGalleryView()
     } else if velocity.y > GestureConstants.velocity || galleryHeight < GestureConstants.minimumHeight {
       collapseGalleryView(nil)
+    }
+  }
+  
+  // Added by mbecker: Crop
+  // MARK: - TOCropViewControllerDelegate
+  
+  @objc(cropViewController:original:didCropToImage:withRect:angle:) public func cropViewController(_ cropViewController: TOCropViewController, original originalImage: UIImage, didCropTo image: UIImage, with cropRect: CGRect, angle: Int) {
+    cropViewController.dismiss(animated: false) {
+      // ToDo: Add uiview controller to show map and textfields
+      self.delegate?.doneButtonDidPress(self, original: [originalImage], images: [image])
     }
   }
 }

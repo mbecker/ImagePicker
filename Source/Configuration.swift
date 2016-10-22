@@ -14,12 +14,12 @@ public struct Configuration {
   public static var settingsColor = UIColor.white
   // Added by mbecker: Let the backgorund color for the pressed picker button be configurable
   public static var pickerBackgroundColor = UIColor(red:0.93, green:0.40, blue:0.44, alpha:1.00) // Watermelon
-  public static var pickerButtonHiglightedColor = UIColor(red:0.83, green:0.29, blue:0.31, alpha:1.00) // Watermelon Dark
+  public static var pickerButtonHiglightedColor = UIColor(red:0.85, green:0.32, blue:0.36, alpha:1.00) // Watermelon Dark
   public static var pickerButtonTextColor = UIColor.white
-  public static var pickerButtonDoneColor = UIColor(red:0.10, green:0.71, blue:0.57, alpha:1.00) // Mint
+  public static var pickerButtonDoneColor = UIColor(red:0.10, green:0.71, blue:0.57, alpha:1.00) // Mint green
   public static var pickerButtonDoneHighlightedColor = UIColor(red:0.09, green:0.59, blue:0.48, alpha:1.00) // Dark Mint
   
-  public static var doneButtonColor = UIColor(red:1.00, green:0.78, blue:0.02, alpha:1.00)
+  public static var doneButtonColor = UIColor(red:0.10, green:0.71, blue:0.57, alpha:1.00) // Mint green
   public static var cancelButtonColor = UIColor(red:0.93, green:0.40, blue:0.44, alpha:1.00)
   
   // Image Stack

@@ -45,7 +45,7 @@ open class BottomContainerView: UIView {
 
     return button
     }()
-
+  
   lazy var stackView = ImageStackView(frame: CGRect(x: 0, y: 0, width: 80, height: 80))
 
   lazy var topSeparator: UIView = { [unowned self] in
@@ -89,13 +89,11 @@ open class BottomContainerView: UIView {
   // MARK: - Action methods
 
   func doneButtonDidPress(_ button: UIButton) {
-//    if button.currentTitle == Configuration.cancelButtonTitle {
-//      delegate?.cancelButtonDidPress()
-//    } else {
-//      delegate?.doneButtonDidPress()
-//    }
-    // Added by mbecker: Update of done and cancel button; only show cancel button
-    delegate?.cancelButtonDidPress()
+    if button.currentTitle == Configuration.cancelButtonTitle {
+      delegate?.cancelButtonDidPress()
+    } else {
+      delegate?.doneButtonDidPress()
+    }
   }
 
   func handleTapGestureRecognizer(_ recognizer: UITapGestureRecognizer) {

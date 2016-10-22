@@ -83,32 +83,12 @@ class ButtonPicker: UIButton {
     // Added by mbecker: Change user how many images are left to add
     numberLabel.textColor = Configuration.pickerButtonTextColor
     if sender.assets.isEmpty {
-      
-      setBackgroundColor(color: Configuration.pickerBackgroundColor, forState: .normal)
-      setBackgroundColor(color: Configuration.pickerButtonDoneHighlightedColor, forState: .highlighted)
-      layer.borderColor = Configuration.pickerBackgroundColor.cgColor
-      
       numberLabel.text = ""
-    } else if sender.assets.count == Configuration.imageLimit && Configuration.imageLimit > 0 {
-      
-      setBackgroundColor(color: Configuration.pickerButtonDoneColor, forState: .normal)
-      setBackgroundColor(color: Configuration.pickerButtonDoneHighlightedColor, forState: .highlighted)
-      layer.borderColor = Configuration.pickerButtonDoneColor.cgColor
-      numberLabel.text = "Next"
-      
     } else {
-      setBackgroundColor(color: Configuration.pickerBackgroundColor, forState: .normal)
-      setBackgroundColor(color: Configuration.pickerButtonHiglightedColor, forState: .highlighted)
-      layer.borderColor = Configuration.pickerBackgroundColor.cgColor
-      
       numberLabel.text = Configuration.imageLimit == 0 ? String(sender.assets.count) : String(sender.assets.count) + "/" + String(Configuration.imageLimit)
     }
     
     
-  }
-  
-  func pickerButtonDidPressOutside(_ button: UIButton, _ event: UIEvent) {
-    backgroundColor = Configuration.pickerBackgroundColor
   }
 
   func pickerButtonDidPress(_ button: UIButton) {

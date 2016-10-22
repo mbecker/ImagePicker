@@ -248,15 +248,15 @@ open class ImagePickerController: UIViewController, TOCropViewControllerDelegate
     
     // Added by mbecker: Disable "done" button; show only "cancel" button
     
-//    guard let sender = notification.object as? ImageStack else { return }
+    guard let sender = notification.object as? ImageStack else { return }
     
-//    if sender.assets.isEmpty {
-//      bottomContainer.doneButton.setTitle(Configuration.cancelButtonTitle, for: UIControlState())
-//      bottomContainer.doneButton.setTitleColor(Configuration.cancelButtonColor, for: UIControlState())
-//    } else {
-//      bottomContainer.doneButton.setTitle(Configuration.doneButtonTitle, for: UIControlState())
-//      bottomContainer.doneButton.setTitleColor(Configuration.doneButtonColor, for: UIControlState())
-//    }
+    if sender.assets.isEmpty {
+      bottomContainer.doneButton.setTitle(Configuration.cancelButtonTitle, for: UIControlState())
+      bottomContainer.doneButton.setTitleColor(Configuration.cancelButtonColor, for: UIControlState())
+    } else {
+      bottomContainer.doneButton.setTitle(Configuration.doneButtonTitle, for: UIControlState())
+      bottomContainer.doneButton.setTitleColor(Configuration.doneButtonColor, for: UIControlState())
+    }
   }
 
   // MARK: - Helpers
@@ -338,13 +338,7 @@ open class ImagePickerController: UIViewController, TOCropViewControllerDelegate
 extension ImagePickerController: BottomContainerViewDelegate {
 
   func pickerButtonDidPress() {
-    // Added by mbecker: If image is selected from library go to crop
-    if isBelowImageLimit() {
-      takePicture()
-    } else {
-      doneButtonDidPress()
-    }
-    
+    takePicture()    
   }
 
   func doneButtonDidPress() {

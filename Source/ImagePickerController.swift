@@ -31,7 +31,8 @@ open class ImagePickerController: UIViewController, TOCropViewControllerDelegate
 
   open lazy var bottomContainer: BottomContainerView = { [unowned self] in
     let view = BottomContainerView()
-    view.backgroundColor = UIColor(red: 0.09, green: 0.11, blue: 0.13, alpha: 1)
+    // Added by mbecker: Removed background color; already defined in BottomContainerView
+//    view.backgroundColor = UIColor(red: 0.09, green: 0.11, blue: 0.13, alpha: 1)
     view.delegate = self
 
     return view
@@ -546,9 +547,24 @@ extension ImagePickerController: ImageGalleryPanGestureDelegate {
   // MARK: - TOCropViewControllerDelegate
   
   @objc(cropViewController:original:didCropToImage:withRect:angle:) public func cropViewController(_ cropViewController: TOCropViewController, original originalImage: UIImage, didCropTo image: UIImage, with cropRect: CGRect, angle: Int) {
-    cropViewController.dismiss(animated: false) {
-      // ToDo: Add uiview controller to show map and textfields
-      self.delegate?.doneButtonDidPress(self, original: [originalImage], images: [image])
-    }
+    let formController = FormController()
+//    let navigationController = UINavigationController(rootViewController: formController)
+//    navigationController.toolbar.backgroundColor = UIColor(red:0.09, green:0.10, blue:0.12, alpha:1.00)
+//    navigationController.toolbar.barTintColor = UIColor(red:0.09, green:0.10, blue:0.12, alpha:1.00)
+//    navigationController.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: nil)
+//    navigationController.isToolbarHidden = false
+//    cropViewController.navigationController?.isToolbarHidden = false
+//    self.navigationController?.isToolbarHidden = false
+    
+    cropViewController.present(formController, animated: false, completion: nil)
+//    cropViewController.dismiss(animated: false) {
+//      // ToDo: Add uiview controller to show map and textfields
+//      
+//      
+//      self.present(navigationController, animated: true, completion: nil)
+//      
+////      self.delegate?.doneButtonDidPress(self, original: [originalImage], images: [image])
+//    }
   }
+  
 }

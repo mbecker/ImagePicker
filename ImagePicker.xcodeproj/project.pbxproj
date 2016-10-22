@@ -9,7 +9,13 @@
 /* Begin PBXBuildFile section */
 		39D134101CAC4B4E00EA2ECE /* AssetManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D1340F1CAC4B4E00EA2ECE /* AssetManager.swift */; };
 		39E3C3311CAFD79200340DAD /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E3C3301CAFD79200340DAD /* LocationManager.swift */; };
+		D1467D521DB92E5900C5A136 /* ic_my_location_white_36pt_3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D1467D511DB92E5900C5A136 /* ic_my_location_white_36pt_3x.png */; };
 		D1584BD91DB8003900182D66 /* TOCropViewController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1584BD81DB8003900182D66 /* TOCropViewController.framework */; };
+		D1584BE41DB8E2CB00182D66 /* Eureka.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1584BE31DB8E2CB00182D66 /* Eureka.framework */; };
+		D1584BE81DB8E36D00182D66 /* FormController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1584BE61DB8E36D00182D66 /* FormController.swift */; };
+		D1584BE91DB8E36D00182D66 /* FormController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D1584BE71DB8E36D00182D66 /* FormController.xib */; };
+		D1584BED1DB8F11F00182D66 /* FormHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1584BEC1DB8F11F00182D66 /* FormHelper.swift */; };
+		D1584BEF1DB8FAF500182D66 /* BottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1584BEE1DB8FAF500182D66 /* BottomView.swift */; };
 		D20FF6361CD23426000F3BFE /* CameraMan.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20FF6351CD23426000F3BFE /* CameraMan.swift */; };
 		D25A8C2C1D47681E0008D2F7 /* ImageGalleryLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25A8C2B1D47681E0008D2F7 /* ImageGalleryLayout.swift */; };
 		D25A8C2E1D4768250008D2F7 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25A8C2D1D4768250008D2F7 /* Helper.swift */; };
@@ -48,8 +54,16 @@
 /* Begin PBXFileReference section */
 		39D1340F1CAC4B4E00EA2ECE /* AssetManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetManager.swift; sourceTree = "<group>"; };
 		39E3C3301CAFD79200340DAD /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		D1467D511DB92E5900C5A136 /* ic_my_location_white_36pt_3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_my_location_white_36pt_3x.png; sourceTree = "<group>"; };
 		D1584BC41DB7F66E00182D66 /* TOCropViewController.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TOCropViewController.framework; path = "../../../../Library/Developer/Xcode/DerivedData/app-grgiojysrsvncibaxqslwjvzzmtn/Build/Products/Debug-iphoneos/TOCropViewController/TOCropViewController.framework"; sourceTree = "<group>"; };
 		D1584BD81DB8003900182D66 /* TOCropViewController.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TOCropViewController.framework; path = "../../../../Library/Developer/Xcode/DerivedData/app-grgiojysrsvncibaxqslwjvzzmtn/Build/Products/Debug-iphoneos/TOCropViewController.framework"; sourceTree = "<group>"; };
+		D1584BDC1DB8DFF800182D66 /* Eureka.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Eureka.framework; path = "../Eureka/build/Debug-iphoneos/Eureka.framework"; sourceTree = "<group>"; };
+		D1584BE01DB8E1F800182D66 /* Eureka.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Eureka.framework; path = "../../../../Library/Developer/Xcode/DerivedData/app-grgiojysrsvncibaxqslwjvzzmtn/Build/Products/Debug-iphoneos/Eureka.framework"; sourceTree = "<group>"; };
+		D1584BE31DB8E2CB00182D66 /* Eureka.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Eureka.framework; path = "../../../../Library/Developer/Xcode/DerivedData/app-grgiojysrsvncibaxqslwjvzzmtn/Build/Products/Debug-iphoneos/Eureka/Eureka.framework"; sourceTree = "<group>"; };
+		D1584BE61DB8E36D00182D66 /* FormController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormController.swift; sourceTree = "<group>"; };
+		D1584BE71DB8E36D00182D66 /* FormController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FormController.xib; sourceTree = "<group>"; };
+		D1584BEC1DB8F11F00182D66 /* FormHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormHelper.swift; sourceTree = "<group>"; };
+		D1584BEE1DB8FAF500182D66 /* BottomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomView.swift; sourceTree = "<group>"; };
 		D20FF6351CD23426000F3BFE /* CameraMan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraMan.swift; sourceTree = "<group>"; };
 		D25A8C2B1D47681E0008D2F7 /* ImageGalleryLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageGalleryLayout.swift; sourceTree = "<group>"; };
 		D25A8C2D1D4768250008D2F7 /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
@@ -83,6 +97,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D1584BE41DB8E2CB00182D66 /* Eureka.framework in Frameworks */,
 				D1584BD91DB8003900182D66 /* TOCropViewController.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -101,15 +116,30 @@
 		D1584BC31DB7F66E00182D66 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D1584BE31DB8E2CB00182D66 /* Eureka.framework */,
+				D1584BE01DB8E1F800182D66 /* Eureka.framework */,
+				D1584BDC1DB8DFF800182D66 /* Eureka.framework */,
 				D1584BD81DB8003900182D66 /* TOCropViewController.framework */,
 				D1584BC41DB7F66E00182D66 /* TOCropViewController.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		D1584BE51DB8E35D00182D66 /* Form */ = {
+			isa = PBXGroup;
+			children = (
+				D1584BE61DB8E36D00182D66 /* FormController.swift */,
+				D1584BE71DB8E36D00182D66 /* FormController.xib */,
+				D1584BEC1DB8F11F00182D66 /* FormHelper.swift */,
+				D1584BEE1DB8FAF500182D66 /* BottomView.swift */,
+			);
+			name = Form;
+			sourceTree = "<group>";
+		};
 		D5D370B91C44FD1600690C0A /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				D1467D511DB92E5900C5A136 /* ic_my_location_white_36pt_3x.png */,
 				D5D370BA1C44FD1600690C0A /* AUTO@3x.png */,
 				D5D370BB1C44FD1600690C0A /* cameraIcon@3x.png */,
 				D5D370BC1C44FD1600690C0A /* focusIcon@3x.png */,
@@ -163,6 +193,7 @@
 		D5DC59AA1C201CC4003BD79B /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				D1584BE51DB8E35D00182D66 /* Form */,
 				D25A8C2D1D4768250008D2F7 /* Helper.swift */,
 				D5DC59AC1C201CC4003BD79B /* BottomView */,
 				D5DC59B11C201CC4003BD79B /* CameraView */,
@@ -321,6 +352,8 @@
 				D5D370C21C44FD1600690C0A /* focusIcon@3x.png in Resources */,
 				D5D370C01C44FD1600690C0A /* AUTO@3x.png in Resources */,
 				D5D370C51C44FD1600690C0A /* selectedImageGallery@3x.png in Resources */,
+				D1467D521DB92E5900C5A136 /* ic_my_location_white_36pt_3x.png in Resources */,
+				D1584BE91DB8E36D00182D66 /* FormController.xib in Resources */,
 				D5D370C11C44FD1600690C0A /* cameraIcon@3x.png in Resources */,
 				D5D370C31C44FD1600690C0A /* OFF@3x.png in Resources */,
 			);
@@ -368,11 +401,14 @@
 				39D134101CAC4B4E00EA2ECE /* AssetManager.swift in Sources */,
 				D5DC59C21C201CC4003BD79B /* BottomContainerView.swift in Sources */,
 				D5DC59CC1C201CC4003BD79B /* ImagePickerController.swift in Sources */,
+				D1584BED1DB8F11F00182D66 /* FormHelper.swift in Sources */,
 				D5DC59C61C201CC4003BD79B /* CameraView.swift in Sources */,
 				D5DC59C91C201CC4003BD79B /* ImageGalleryView.swift in Sources */,
 				D5DC59C31C201CC4003BD79B /* ButtonPicker.swift in Sources */,
+				D1584BE81DB8E36D00182D66 /* FormController.swift in Sources */,
 				D5DC59C51C201CC4003BD79B /* StackView.swift in Sources */,
 				D20FF6361CD23426000F3BFE /* CameraMan.swift in Sources */,
+				D1584BEF1DB8FAF500182D66 /* BottomView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

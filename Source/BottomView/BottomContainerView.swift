@@ -25,7 +25,8 @@ open class BottomContainerView: UIView {
   lazy var borderPickerButton: UIView = {
     let view = UIView()
     view.backgroundColor = UIColor.clear
-    view.layer.borderColor = UIColor.white.cgColor
+    // Added by mbecker: Update border color to Configuration
+    view.layer.borderColor = Configuration.pickerBackgroundColor.cgColor
     view.layer.borderWidth = ButtonPicker.Dimensions.borderWidth
     view.layer.cornerRadius = ButtonPicker.Dimensions.buttonBorderSize / 2
 
@@ -49,7 +50,7 @@ open class BottomContainerView: UIView {
 
   lazy var topSeparator: UIView = { [unowned self] in
     let view = UIView()
-    view.backgroundColor = Configuration.backgroundColor
+    view.backgroundColor = Configuration.seperatorColor
 
     return view
     }()

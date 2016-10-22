@@ -65,12 +65,15 @@ class ButtonPicker: UIButton {
   // MARK: - Configuration
 
   func setupButton() {
-    backgroundColor = UIColor.white
+    // Added by mbecker: Update backgroundcolor to Configuration
+    backgroundColor = Configuration.pickerBackgroundColor
     layer.cornerRadius = Dimensions.buttonSize / 2
     accessibilityLabel = "Take photo"
+    clipsToBounds = true
+    setBackgroundColor(color: Configuration.pickerBackgroundColor, forState: .normal)
+    setBackgroundColor(color: Configuration.pickerButtonHiglightedColor, forState: .highlighted)
+
     addTarget(self, action: #selector(pickerButtonDidPress(_:)), for: .touchUpInside)
-    addTarget(self, action: #selector(pickerButtonDidHighlight(_:)), for: .touchDown)
-    addTarget(self, action: #selector(pickerButtonDidHighlight2(_:)), for: .touchUpOutside)
   }
 
   // MARK: - Actions
@@ -78,40 +81,48 @@ class ButtonPicker: UIButton {
   func recalculatePhotosCount(_ notification: Notification) {
     guard let sender = notification.object as? ImageStack else { return }
     // Added by mbecker: Change user how many images are left to add
+    numberLabel.textColor = Configuration.pickerButtonTextColor
     if sender.assets.isEmpty {
-        numberLabel.text = ""
+      
+      setBackgroundColor(color: Configuration.pickerBackgroundColor, forState: .normal)
+      setBackgroundColor(color: Configuration.pickerButtonDoneHighlightedColor, forState: .highlighted)
+      layer.borderColor = Configuration.pickerBackgroundColor.cgColor
+      
+      numberLabel.text = ""
+    } else if sender.assets.count == Configuration.imageLimit && Configuration.imageLimit > 0 {
+      
+      setBackgroundColor(color: Configuration.pickerButtonDoneColor, forState: .normal)
+      setBackgroundColor(color: Configuration.pickerButtonDoneHighlightedColor, forState: .highlighted)
+      layer.borderColor = Configuration.pickerButtonDoneColor.cgColor
+      numberLabel.text = "Next"
+      
     } else {
-        numberLabel.text = Configuration.imageLimit == 0 ? String(sender.assets.count) : String(sender.assets.count) + "/" + String(Configuration.imageLimit)
+      setBackgroundColor(color: Configuration.pickerBackgroundColor, forState: .normal)
+      setBackgroundColor(color: Configuration.pickerButtonHiglightedColor, forState: .highlighted)
+      layer.borderColor = Configuration.pickerBackgroundColor.cgColor
+      
+      numberLabel.text = Configuration.imageLimit == 0 ? String(sender.assets.count) : String(sender.assets.count) + "/" + String(Configuration.imageLimit)
     }
     
-    if sender.assets.count == Configuration.imageLimit {
-      self.imagesSelectedLimit = true
-      backgroundColor = Configuration.pickerButtonDoneBackgroundColor
-      numberLabel.textColor = UIColor.white
-      numberLabel.text = Configuration.imageLimit == 0 ? String(sender.assets.count) : "Upload"
-    } else {
-      backgroundColor = UIColor.white
-    }
+    
+  }
+  
+  func pickerButtonDidPressOutside(_ button: UIButton, _ event: UIEvent) {
+    backgroundColor = Configuration.pickerBackgroundColor
   }
 
   func pickerButtonDidPress(_ button: UIButton) {
-    backgroundColor = Configuration.pickerButtonTouchBackgroundColor
-    numberLabel.textColor = UIColor.white
-    numberLabel.sizeToFit()
     delegate?.buttonDidPress()
   }
 
-  func pickerButtonDidHighlight(_ button: UIButton) {
-    numberLabel.textColor = UIColor.white
-    backgroundColor = Configuration.pickerButtonTouchBackgroundColor
-  }
-  
-  func pickerButtonDidHighlight2(_ button: UIButton) {
-    if imagesSelectedLimit {
-      backgroundColor = Configuration.pickerButtonDoneBackgroundColor
-    } else {
-      backgroundColor = UIColor.white
-    }
-    numberLabel.textColor = UIColor.white
-  }
 }
+
+extension UIButton {
+  func setBackgroundColor(color: UIColor, forState: UIControlState) {
+    UIGraphicsBeginImageContext(CGSize(width: 1, height: 1))
+    UIGraphicsGetCurrentContext()!.setFillColor(color.cgColor)
+    UIGraphicsGetCurrentContext()!.fill(CGRect(x: 0, y: 0, width: 1, height: 1))
+    let colorImage = UIGraphicsGetImageFromCurrentImageContext()
+    UIGraphicsEndImageContext()
+    self.setBackgroundImage(colorImage, for: forState)
+  }}

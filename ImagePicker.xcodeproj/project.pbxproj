@@ -11,7 +11,6 @@
 		39E3C3311CAFD79200340DAD /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39E3C3301CAFD79200340DAD /* LocationManager.swift */; };
 		D1467D521DB92E5900C5A136 /* ic_my_location_white_36pt_3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D1467D511DB92E5900C5A136 /* ic_my_location_white_36pt_3x.png */; };
 		D1584BE81DB8E36D00182D66 /* FormController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1584BE61DB8E36D00182D66 /* FormController.swift */; };
-		D1584BE91DB8E36D00182D66 /* FormController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D1584BE71DB8E36D00182D66 /* FormController.xib */; };
 		D1584BED1DB8F11F00182D66 /* FormHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1584BEC1DB8F11F00182D66 /* FormHelper.swift */; };
 		D1584BEF1DB8FAF500182D66 /* BottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1584BEE1DB8FAF500182D66 /* BottomView.swift */; };
 		D19B66BD1DBC8A26002307C7 /* Eureka.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D19B66BC1DBC8A26002307C7 /* Eureka.framework */; };
@@ -64,7 +63,6 @@
 		D1584BE01DB8E1F800182D66 /* Eureka.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Eureka.framework; path = "../../../../Library/Developer/Xcode/DerivedData/app-grgiojysrsvncibaxqslwjvzzmtn/Build/Products/Debug-iphoneos/Eureka.framework"; sourceTree = "<group>"; };
 		D1584BE31DB8E2CB00182D66 /* Eureka.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Eureka.framework; path = "../../../../Library/Developer/Xcode/DerivedData/app-grgiojysrsvncibaxqslwjvzzmtn/Build/Products/Debug-iphoneos/Eureka/Eureka.framework"; sourceTree = "<group>"; };
 		D1584BE61DB8E36D00182D66 /* FormController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormController.swift; sourceTree = "<group>"; };
-		D1584BE71DB8E36D00182D66 /* FormController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FormController.xib; sourceTree = "<group>"; };
 		D1584BEC1DB8F11F00182D66 /* FormHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormHelper.swift; sourceTree = "<group>"; };
 		D1584BEE1DB8FAF500182D66 /* BottomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomView.swift; sourceTree = "<group>"; };
 		D19B66BC1DBC8A26002307C7 /* Eureka.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Eureka.framework; path = "../../../Library/Developer/Xcode/DerivedData/app-aklaeqwhlidlknfcqbjxlqwnzdgg/Build/Products/Debug-iphoneos/Eureka/Eureka.framework"; sourceTree = "<group>"; };
@@ -141,7 +139,6 @@
 			isa = PBXGroup;
 			children = (
 				D1584BE61DB8E36D00182D66 /* FormController.swift */,
-				D1584BE71DB8E36D00182D66 /* FormController.xib */,
 				D1584BEC1DB8F11F00182D66 /* FormHelper.swift */,
 				D1584BEE1DB8FAF500182D66 /* BottomView.swift */,
 			);
@@ -368,7 +365,6 @@
 				D5D370C01C44FD1600690C0A /* AUTO@3x.png in Resources */,
 				D5D370C51C44FD1600690C0A /* selectedImageGallery@3x.png in Resources */,
 				D1467D521DB92E5900C5A136 /* ic_my_location_white_36pt_3x.png in Resources */,
-				D1584BE91DB8E36D00182D66 /* FormController.xib in Resources */,
 				D19B66CD1DBC954D002307C7 /* ic_chevron_right_36pt_2x.png in Resources */,
 				D19B66CC1DBC954D002307C7 /* ic_chevron_right_36pt_3x.png in Resources */,
 				D5D370C11C44FD1600690C0A /* cameraIcon@3x.png in Resources */,

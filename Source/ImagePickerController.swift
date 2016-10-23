@@ -246,17 +246,19 @@ open class ImagePickerController: UIViewController, TOCropViewControllerDelegate
 
   func adjustButtonTitle(_ notification: Notification) {
     
-    // Added by mbecker: Disable "done" button; show only "cancel" button
+    // Added by mbecker: Show only done buton; cancel button is now on the left
+    bottomContainer.doneButton.setTitle(Configuration.doneButtonTitle, for: UIControlState())
+    bottomContainer.doneButton.setTitleColor(Configuration.doneButtonColor, for: UIControlState())
     
-    guard let sender = notification.object as? ImageStack else { return }
-    
-    if sender.assets.isEmpty {
-      bottomContainer.doneButton.setTitle(Configuration.cancelButtonTitle, for: UIControlState())
-      bottomContainer.doneButton.setTitleColor(Configuration.cancelButtonColor, for: UIControlState())
-    } else {
-      bottomContainer.doneButton.setTitle(Configuration.doneButtonTitle, for: UIControlState())
-      bottomContainer.doneButton.setTitleColor(Configuration.doneButtonColor, for: UIControlState())
-    }
+//    guard let sender = notification.object as? ImageStack else { return }
+//    
+//    if sender.assets.isEmpty {
+//      bottomContainer.doneButton.setTitle(Configuration.cancelButtonTitle, for: UIControlState())
+//      bottomContainer.doneButton.setTitleColor(Configuration.cancelButtonColor, for: UIControlState())
+//    } else {
+//      bottomContainer.doneButton.setTitle(Configuration.doneButtonTitle, for: UIControlState())
+//      bottomContainer.doneButton.setTitleColor(Configuration.doneButtonColor, for: UIControlState())
+//    }
   }
 
   // MARK: - Helpers
@@ -307,7 +309,8 @@ open class ImagePickerController: UIViewController, TOCropViewControllerDelegate
   func enableGestures(_ enabled: Bool) {
     galleryView.alpha = enabled ? 1 : 0
     bottomContainer.pickerButton.isEnabled = enabled
-    bottomContainer.tapGestureRecognizer.isEnabled = enabled
+    // Update by mbecker: No imagestackview anymore
+//    bottomContainer.tapGestureRecognizer.isEnabled = enabled
     topView.flashButton.isEnabled = enabled
     topView.rotateCamera.isEnabled = Configuration.canRotateCamera
   }
@@ -320,7 +323,8 @@ open class ImagePickerController: UIViewController, TOCropViewControllerDelegate
     guard isBelowImageLimit() && !isTakingPicture else { return }
     isTakingPicture = true
     bottomContainer.pickerButton.isEnabled = false
-    bottomContainer.stackView.startLoader()
+    // Update by mbecker: Comment next line
+    // bottomContainer.stackView.startLoader()
     let action: (Void) -> Void = { [unowned self] in
       self.cameraController.takePicture { self.isTakingPicture = false }
     }
@@ -342,43 +346,55 @@ extension ImagePickerController: BottomContainerViewDelegate {
   }
 
   func doneButtonDidPress() {
-    var images: [UIImage]
-    if let preferredImageSize = preferredImageSize {
-      images = AssetManager.resolveAssets(stack.assets, size: preferredImageSize)
+    
+    // Added by mbecker: If statement to check if stack.asset is empty
+    if stack.assets.isEmpty {
+      let alert = UIAlertView()
+      alert.title = "Camera"
+      alert.addButton(withTitle: "OK")
+      alert.message = "Please select at least one image"
+      alert.show()
     } else {
-      images = AssetManager.resolveAssets(stack.assets)
+      var images: [UIImage]
+      if let preferredImageSize = preferredImageSize {
+        images = AssetManager.resolveAssets(stack.assets, size: preferredImageSize)
+      } else {
+        images = AssetManager.resolveAssets(stack.assets)
+      }
+      
+      // Added by mbecker: Crop
+      let cropViewController = TOCropViewController(image: images[0])
+      cropViewController.delegate = self
+      cropViewController.aspectRatioLockEnabled = true
+      cropViewController.resetAspectRatioEnabled = false
+      cropViewController.aspectRatioPickerButtonHidden = true // Buton to select different ratios
+      cropViewController.customAspectRatio = CGSize(width: 375, height: 300)
+      cropViewController.rotateButtonsHidden = false
+      cropViewController.rotateClockwiseButtonHidden = false
+      
+      self.present(cropViewController, animated: true, completion: nil)
+      
+      //    delegate?.doneButtonDidPress(self, images: images)
     }
     
-    // Added by mbecker: Crop
-    let cropViewController = TOCropViewController(image: images[0])
-    cropViewController.delegate = self
-    cropViewController.aspectRatioLockEnabled = true
-    cropViewController.resetAspectRatioEnabled = false
-    cropViewController.aspectRatioPickerButtonHidden = true // Buton to select different ratios
-    cropViewController.customAspectRatio = CGSize(width: 375, height: 300)
-    cropViewController.rotateButtonsHidden = false
-    cropViewController.rotateClockwiseButtonHidden = false
-    
-    self.present(cropViewController, animated: true, completion: nil)
-
-//    delegate?.doneButtonDidPress(self, images: images)
   }
 
   func cancelButtonDidPress() {
     dismiss(animated: true, completion: nil)
     delegate?.cancelButtonDidPress(self)
   }
-
-  func imageStackViewDidPress() {
-    var images: [UIImage]
-    if let preferredImageSize = preferredImageSize {
-        images = AssetManager.resolveAssets(stack.assets, size: preferredImageSize)
-    } else {
-        images = AssetManager.resolveAssets(stack.assets)
-    }
-
-    delegate?.wrapperDidPress(self, images: images)
-  }
+  
+  // Update by mbecker: Comment next line
+//  func imageStackViewDidPress() {
+//    var images: [UIImage]
+//    if let preferredImageSize = preferredImageSize {
+//        images = AssetManager.resolveAssets(stack.assets, size: preferredImageSize)
+//    } else {
+//        images = AssetManager.resolveAssets(stack.assets)
+//    }
+//
+//    delegate?.wrapperDidPress(self, images: images)
+//  }
 }
 
 extension ImagePickerController: CameraViewDelegate {
@@ -436,8 +452,9 @@ extension ImagePickerController: CameraViewDelegate {
     let rotate = Helper.rotationTransform()
 
     UIView.animate(withDuration: 0.25, animations: {
+      // Update by mbecker: Remove self.bottomContainer.stackView form array
       [self.topView.rotateCamera, self.bottomContainer.pickerButton,
-        self.bottomContainer.stackView, self.bottomContainer.doneButton].forEach {
+        self.bottomContainer.doneButton].forEach {
         $0.transform = rotate
       }
 

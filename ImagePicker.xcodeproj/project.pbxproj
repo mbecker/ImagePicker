@@ -14,7 +14,10 @@
 		D1584BE91DB8E36D00182D66 /* FormController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D1584BE71DB8E36D00182D66 /* FormController.xib */; };
 		D1584BED1DB8F11F00182D66 /* FormHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1584BEC1DB8F11F00182D66 /* FormHelper.swift */; };
 		D1584BEF1DB8FAF500182D66 /* BottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1584BEE1DB8FAF500182D66 /* BottomView.swift */; };
-		D1DC08BD1DBBA12600FFD808 /* Eureka.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1DC08BC1DBBA12600FFD808 /* Eureka.framework */; };
+		D19B66BD1DBC8A26002307C7 /* Eureka.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D19B66BC1DBC8A26002307C7 /* Eureka.framework */; };
+		D19B66CB1DBC954D002307C7 /* ic_chevron_right_36pt.png in Resources */ = {isa = PBXBuildFile; fileRef = D19B66C81DBC954D002307C7 /* ic_chevron_right_36pt.png */; };
+		D19B66CC1DBC954D002307C7 /* ic_chevron_right_36pt_3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D19B66C91DBC954D002307C7 /* ic_chevron_right_36pt_3x.png */; };
+		D19B66CD1DBC954D002307C7 /* ic_chevron_right_36pt_2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D19B66CA1DBC954D002307C7 /* ic_chevron_right_36pt_2x.png */; };
 		D1DC08BF1DBBA12E00FFD808 /* TOCropViewController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1DC08BE1DBBA12E00FFD808 /* TOCropViewController.framework */; };
 		D20FF6361CD23426000F3BFE /* CameraMan.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20FF6351CD23426000F3BFE /* CameraMan.swift */; };
 		D25A8C2C1D47681E0008D2F7 /* ImageGalleryLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25A8C2B1D47681E0008D2F7 /* ImageGalleryLayout.swift */; };
@@ -64,6 +67,10 @@
 		D1584BE71DB8E36D00182D66 /* FormController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FormController.xib; sourceTree = "<group>"; };
 		D1584BEC1DB8F11F00182D66 /* FormHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormHelper.swift; sourceTree = "<group>"; };
 		D1584BEE1DB8FAF500182D66 /* BottomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomView.swift; sourceTree = "<group>"; };
+		D19B66BC1DBC8A26002307C7 /* Eureka.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Eureka.framework; path = "../../../Library/Developer/Xcode/DerivedData/app-aklaeqwhlidlknfcqbjxlqwnzdgg/Build/Products/Debug-iphoneos/Eureka/Eureka.framework"; sourceTree = "<group>"; };
+		D19B66C81DBC954D002307C7 /* ic_chevron_right_36pt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_chevron_right_36pt.png; sourceTree = "<group>"; };
+		D19B66C91DBC954D002307C7 /* ic_chevron_right_36pt_3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_chevron_right_36pt_3x.png; sourceTree = "<group>"; };
+		D19B66CA1DBC954D002307C7 /* ic_chevron_right_36pt_2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_chevron_right_36pt_2x.png; sourceTree = "<group>"; };
 		D1DC08BC1DBBA12600FFD808 /* Eureka.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Eureka.framework; path = "/Users/mbecker/apps/safari/app/Pods/../build/Debug-iphoneos/Eureka/Eureka.framework"; sourceTree = "<absolute>"; };
 		D1DC08BE1DBBA12E00FFD808 /* TOCropViewController.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TOCropViewController.framework; path = "../../../../Library/Developer/Xcode/DerivedData/app-grgiojysrsvncibaxqslwjvzzmtn/Build/Products/Debug-iphonesimulator/TOCropViewController.framework"; sourceTree = "<group>"; };
 		D20FF6351CD23426000F3BFE /* CameraMan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraMan.swift; sourceTree = "<group>"; };
@@ -99,8 +106,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D19B66BD1DBC8A26002307C7 /* Eureka.framework in Frameworks */,
 				D1DC08BF1DBBA12E00FFD808 /* TOCropViewController.framework in Frameworks */,
-				D1DC08BD1DBBA12600FFD808 /* Eureka.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -118,6 +125,7 @@
 		D1584BC31DB7F66E00182D66 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D19B66BC1DBC8A26002307C7 /* Eureka.framework */,
 				D1DC08BE1DBBA12E00FFD808 /* TOCropViewController.framework */,
 				D1DC08BC1DBBA12600FFD808 /* Eureka.framework */,
 				D1584BE31DB8E2CB00182D66 /* Eureka.framework */,
@@ -143,6 +151,9 @@
 		D5D370B91C44FD1600690C0A /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				D19B66C81DBC954D002307C7 /* ic_chevron_right_36pt.png */,
+				D19B66C91DBC954D002307C7 /* ic_chevron_right_36pt_3x.png */,
+				D19B66CA1DBC954D002307C7 /* ic_chevron_right_36pt_2x.png */,
 				D1467D511DB92E5900C5A136 /* ic_my_location_white_36pt_3x.png */,
 				D5D370BA1C44FD1600690C0A /* AUTO@3x.png */,
 				D5D370BB1C44FD1600690C0A /* cameraIcon@3x.png */,
@@ -358,7 +369,10 @@
 				D5D370C51C44FD1600690C0A /* selectedImageGallery@3x.png in Resources */,
 				D1467D521DB92E5900C5A136 /* ic_my_location_white_36pt_3x.png in Resources */,
 				D1584BE91DB8E36D00182D66 /* FormController.xib in Resources */,
+				D19B66CD1DBC954D002307C7 /* ic_chevron_right_36pt_2x.png in Resources */,
+				D19B66CC1DBC954D002307C7 /* ic_chevron_right_36pt_3x.png in Resources */,
 				D5D370C11C44FD1600690C0A /* cameraIcon@3x.png in Resources */,
+				D19B66CB1DBC954D002307C7 /* ic_chevron_right_36pt.png in Resources */,
 				D5D370C31C44FD1600690C0A /* OFF@3x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

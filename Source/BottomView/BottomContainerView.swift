@@ -46,7 +46,6 @@ open class BottomContainerView: UIView {
     
     // Addey by mbecker: Set image chevron right
     button.setImage(AssetManager.getImage("ic_chevron_right_36pt"), for: UIControlState())
-    print(":: BUTOM IMAGE VIEW - \(-(button.imageView?.frame.size.width)!)")
     button.titleEdgeInsets = UIEdgeInsetsMake(0, -60, 0, (button.imageView?.frame.size.width)!);
     button.imageEdgeInsets = UIEdgeInsetsMake(0, (button.titleLabel?.frame.size.width)!, 0, -(button.titleLabel?.frame.size.width)!);
   

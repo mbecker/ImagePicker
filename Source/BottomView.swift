@@ -33,13 +33,15 @@ class BottomView: UIView {
     
     cancelButton.setTitle("Cancel", for: UIControlState())
     cancelButton.titleLabel?.font = Configuration.doneButton
-    cancelButton.setTitleColor(UIColor(red:0.09, green:0.10, blue:0.12, alpha:1.00), for: UIControlState())
+    cancelButton.setTitleColor(UIColor(red:0.09, green:0.10, blue:0.12, alpha:1.00), for: .normal)
+    cancelButton.setTitleColor(UIColor(red:0.09, green:0.10, blue:0.12, alpha:1.00).withAlphaComponent(0.6), for: .highlighted)
     cancelButton.backgroundColor = UIColor.clear
     cancelButton.translatesAutoresizingMaskIntoConstraints = false
     
     doneButton.setTitle("Upload", for: UIControlState())
     doneButton.titleLabel?.font = Configuration.doneButton
-    doneButton.setTitleColor(UIColor(red:0.10, green:0.71, blue:0.57, alpha:1.00), for: UIControlState())
+    doneButton.setTitleColor(UIColor(red:0.10, green:0.71, blue:0.57, alpha:1.00), for: .normal)
+    doneButton.setTitleColor(UIColor(red:0.09, green:0.59, blue:0.48, alpha:1.00), for: .highlighted)
     doneButton.backgroundColor = UIColor.clear
     doneButton.translatesAutoresizingMaskIntoConstraints = false
     

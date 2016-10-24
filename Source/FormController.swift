@@ -10,8 +10,18 @@ import Eureka
 import CoreLocation
 import MapKit
 
+@objc public protocol FormControllerDelegate: class {
+  
+  func formDone(original: [UIImage], images: [UIImage])
+  func formCancel()
+  
+}
+
 class FormController: FormViewController, CLLocationManagerDelegate {
   
+  open weak var delegate: FormControllerDelegate?
+  var originalImage = UIImage()
+  var resizedImage = UIImage()
   let locationManager = CLLocationManager()
   var location = CLLocation(latitude: 0, longitude: 0)
   
@@ -39,6 +49,7 @@ class FormController: FormViewController, CLLocationManagerDelegate {
     
     let bottomContainer = BottomView(frame: CGRect(x: 0, y: view.frame.height - 101, width: view.frame.width, height: 101))
     bottomContainer.cancelButton.addTarget(self, action: #selector(self.didTapCancel(_:)), for: .touchUpInside)
+    bottomContainer.doneButton.addTarget(self, action: #selector(self.didTapDone(_:)), for: .touchUpInside)
     
     self.view.addSubview(bottomContainer)
     
@@ -99,7 +110,13 @@ class FormController: FormViewController, CLLocationManagerDelegate {
   
   // MARK: - didTapCancel: dismiss view
   @objc fileprivate func didTapCancel(_ item:UIButton){
-    dismiss(animated: false, completion: nil)
+//    self.navigationController?.popViewController(animated: false)
+    self.delegate?.formCancel()
+  }
+  
+  // MARK: - didTapDone: Delegate formDone
+  @objc fileprivate func didTapDone(_ item:UIButton){
+    self.delegate?.formDone(original: [originalImage], images: [resizedImage])
   }
   
 }

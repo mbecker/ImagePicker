@@ -36,19 +36,27 @@ open class BottomContainerView: UIView {
 
   open lazy var doneButton: UIButton = { [unowned self] in
     let button = UIButton()
+    button.frame = CGRect(x: 0, y: 0, width: 80, height: Dimensions.height)
     // Added by mbecker: Change background to clear
     button.backgroundColor = UIColor.clear
     button.setTitle(Configuration.doneButtonTitle, for: UIControlState())
     // Added by mbecker: Change color of cancel button to Configuration
-    button.setTitleColor(Configuration.doneButtonColor, for: UIControlState())
+    button.setTitleColor(Configuration.doneButtonColor, for: .normal)
+    button.setTitleColor(Configuration.doneButtonColor.withAlphaComponent(0.6), for: .highlighted)
+    
     button.titleLabel?.font = Configuration.doneButton
     button.addTarget(self, action: #selector(doneButtonDidPress(_:)), for: .touchUpInside)
     
     // Addey by mbecker: Set image chevron right
-    button.setImage(AssetManager.getImage("ic_chevron_right_36pt"), for: UIControlState())
-    button.titleEdgeInsets = UIEdgeInsetsMake(0, -60, 0, (button.imageView?.frame.size.width)!);
-    button.imageEdgeInsets = UIEdgeInsetsMake(0, (button.titleLabel?.frame.size.width)!, 0, -(button.titleLabel?.frame.size.width)!);
+    let btnImage = AssetManager.getImage("ic_chevron_right_36pt")
+    button.setImage(btnImage, for: UIControlState())
+    button.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, (button.imageView?.frame.size.width)!);
+    button.imageEdgeInsets = UIEdgeInsetsMake(0, (button.titleLabel?.frame.size.width)! + 20, 0, -(button.titleLabel?.frame.size.width)!);
   
+//    button.transform = CGAffineTransform(scaleX: -1.0, y: 0.0)
+//    button.titleLabel?.transform = CGAffineTransform(scaleX: -1.0, y: 0.0)
+//    button.imageView?.transform = CGAffineTransform(scaleX: -1.0, y: 0.0)
+    
 
     return button
     }()
@@ -59,7 +67,8 @@ open class BottomContainerView: UIView {
     button.backgroundColor = UIColor.clear
     button.setTitle(Configuration.cancelButtonTitle, for: UIControlState())
     // Added by mbecker: Change color of cancel button to Configuration
-    button.setTitleColor(Configuration.cancelButtonColor, for: UIControlState())
+    button.setTitleColor(Configuration.cancelButtonColor, for: .normal)
+    button.setTitleColor(Configuration.cancelButtonColor.withAlphaComponent(0.6), for: .highlighted)
     button.titleLabel?.font = Configuration.doneButton
     button.addTarget(self, action: #selector(cancelButtonDidPress(_:)), for: .touchUpInside)
     

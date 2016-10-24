@@ -40,8 +40,8 @@ class BottomView: UIView {
     
     doneButton.setTitle("Upload", for: UIControlState())
     doneButton.titleLabel?.font = Configuration.doneButton
-    doneButton.setTitleColor(UIColor(red:0.10, green:0.71, blue:0.57, alpha:1.00), for: .normal)
-    doneButton.setTitleColor(UIColor(red:0.09, green:0.59, blue:0.48, alpha:1.00), for: .highlighted)
+    doneButton.setTitleColor(UIColor(red:0.10, green:0.71, blue:0.57, alpha:1.00), for: .normal) // Flat Mint
+    doneButton.setTitleColor(UIColor(red:0.09, green:0.59, blue:0.48, alpha:1.00), for: .highlighted) // Mint Dark
     doneButton.backgroundColor = UIColor.clear
     doneButton.translatesAutoresizingMaskIntoConstraints = false
     

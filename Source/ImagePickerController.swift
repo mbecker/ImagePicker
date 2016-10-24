@@ -11,8 +11,8 @@ import TOCropViewController
   
 }
 
-open class ImagePickerController: UIViewController, TOCropViewControllerDelegate {
-
+open class ImagePickerController: UIViewController {
+  
   struct GestureConstants {
     static let maximumHeight: CGFloat = 200
     static let minimumHeight: CGFloat = 125
@@ -92,6 +92,7 @@ open class ImagePickerController: UIViewController, TOCropViewControllerDelegate
 
   open override func viewDidLoad() {
     super.viewDidLoad()
+    
 
     for subview in [cameraController.view, galleryView, bottomContainer, topView] {
       view.addSubview(subview!)
@@ -363,18 +364,8 @@ extension ImagePickerController: BottomContainerViewDelegate {
       }
       
       // Added by mbecker: Crop
-      let cropViewController = TOCropViewController(image: images[0])
-      cropViewController.delegate = self
-      cropViewController.aspectRatioLockEnabled = true
-      cropViewController.resetAspectRatioEnabled = false
-      cropViewController.aspectRatioPickerButtonHidden = true // Buton to select different ratios
-      cropViewController.customAspectRatio = CGSize(width: 375, height: 300)
-      cropViewController.rotateButtonsHidden = false
-      cropViewController.rotateClockwiseButtonHidden = false
+      showCrop(images: images)
       
-      self.present(cropViewController, animated: true, completion: nil)
-      
-      //    delegate?.doneButtonDidPress(self, images: images)
     }
     
   }
@@ -412,15 +403,7 @@ extension ImagePickerController: CameraViewDelegate {
       
       // Added by mbecker: Crop
       let images = AssetManager.resolveAssets(self.stack.assets)
-      let cropViewController = TOCropViewController(image: images[0])
-      cropViewController.delegate = self
-      cropViewController.aspectRatioLockEnabled = true
-      cropViewController.resetAspectRatioEnabled = false
-      cropViewController.aspectRatioPickerButtonHidden = true // Buton to select different ratios
-      cropViewController.customAspectRatio = CGSize(width: 375, height: 300)
-      cropViewController.rotateButtonsHidden = false
-      cropViewController.rotateClockwiseButtonHidden = false
-      self.present(cropViewController, animated: true, completion: nil)
+      self.showCrop(images: images)
       
     }
     galleryView.shouldTransform = true
@@ -470,6 +453,19 @@ extension ImagePickerController: CameraViewDelegate {
 
       self.topView.flashButton.transform = rotate.concatenating(translate)
     }) 
+  }
+  
+  func showCrop(images: [UIImage]){
+    let cropViewController = TOCropViewController(image: images[0])
+    cropViewController.delegate = self
+    cropViewController.aspectRatioLockEnabled = true
+    cropViewController.resetAspectRatioEnabled = false
+    cropViewController.aspectRatioPickerButtonHidden = true // Buton to select different ratios
+    cropViewController.customAspectRatio = CGSize(width: 375, height: 300)
+    cropViewController.rotateButtonsHidden = false
+    cropViewController.rotateClockwiseButtonHidden = false
+    
+    self.navigationController?.pushViewController(cropViewController, animated: false)
   }
 }
 
@@ -554,28 +550,31 @@ extension ImagePickerController: ImageGalleryPanGestureDelegate {
     }
   }
   
-  // Added by mbecker: Crop
-  // MARK: - TOCropViewControllerDelegate
+}
+
+extension ImagePickerController: TOCropViewControllerDelegate {
+  
   
   @objc(cropViewController:original:didCropToImage:withRect:angle:) public func cropViewController(_ cropViewController: TOCropViewController, original originalImage: UIImage, didCropTo image: UIImage, with cropRect: CGRect, angle: Int) {
     let formController = FormController()
-//    let navigationController = UINavigationController(rootViewController: formController)
-//    navigationController.toolbar.backgroundColor = UIColor(red:0.09, green:0.10, blue:0.12, alpha:1.00)
-//    navigationController.toolbar.barTintColor = UIColor(red:0.09, green:0.10, blue:0.12, alpha:1.00)
-//    navigationController.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: nil)
-//    navigationController.isToolbarHidden = false
-//    cropViewController.navigationController?.isToolbarHidden = false
-//    self.navigationController?.isToolbarHidden = false
+    formController.delegate = self
+    formController.originalImage = originalImage
+    formController.resizedImage = image
+    self.navigationController?.pushViewController(formController, animated: false)
     
-    cropViewController.present(formController, animated: false, completion: nil)
-//    cropViewController.dismiss(animated: false) {
-//      // ToDo: Add uiview controller to show map and textfields
-//      
-//      
-//      self.present(navigationController, animated: true, completion: nil)
-//      
-////      self.delegate?.doneButtonDidPress(self, original: [originalImage], images: [image])
-//    }
   }
   
 }
+
+extension ImagePickerController: FormControllerDelegate {
+  
+  public func formDone(original: [UIImage], images: [UIImage]) {
+    self.delegate?.doneButtonDidPress(self, original: original, images: images)
+  }
+  
+  public func formCancel() {
+    self.navigationController?.popViewController(animated: false)
+  }
+  
+}
+

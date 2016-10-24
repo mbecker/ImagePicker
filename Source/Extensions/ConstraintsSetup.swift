@@ -37,24 +37,44 @@ extension BottomContainerView {
 //        multiplier: 1, constant: ImageStackView.Dimensions.imageSize))
     }
 
-    addConstraint(NSLayoutConstraint(item: doneButton, attribute: .centerY,
-      relatedBy: .equal, toItem: self, attribute: .centerY,
-      multiplier: 1, constant: 0))
+    
 
-    // UPdate by mbecker; item 'stackView' to 'cancelButton'; changed constant from -2 to 0
-    addConstraint(NSLayoutConstraint(item: cancelButton, attribute: .centerY,
-      relatedBy: .equal, toItem: self, attribute: .centerY,
-      multiplier: 1, constant: 0))
+    /* done button */
+    addConstraint(NSLayoutConstraint(item: doneButton, attribute: .right,
+                                     relatedBy: .equal, toItem: self, attribute: .right,
+                                     multiplier: 1, constant: 0))
+    
+    addConstraint(NSLayoutConstraint(item: doneButton, attribute: .left,
+                                     relatedBy: .equal, toItem: pickerButton, attribute: .right,
+                                     multiplier: 1, constant: 6))
+    
+    addConstraint(NSLayoutConstraint(item: doneButton, attribute: .top,
+                                     relatedBy: .equal, toItem: self, attribute: .top,
+                                     multiplier: 1, constant: 0))
+    
+    addConstraint(NSLayoutConstraint(item: doneButton, attribute: .bottom,
+                                     relatedBy: .equal, toItem: self, attribute: .bottom,
+                                     multiplier: 1, constant: 0))
+    
+    /* cancel button */
+    addConstraint(NSLayoutConstraint(item: cancelButton, attribute: .left,
+                                     relatedBy: .equal, toItem: self, attribute: .left,
+                                     multiplier: 1, constant: 0))
+    
+    addConstraint(NSLayoutConstraint(item: cancelButton, attribute: .right,
+                                     relatedBy: .equal, toItem: pickerButton, attribute: .left,
+                                     multiplier: 1, constant: -6))
+    
+    addConstraint(NSLayoutConstraint(item: cancelButton, attribute: .top,
+                                     relatedBy: .equal, toItem: self, attribute: .top,
+                                     multiplier: 1, constant: 0))
+    
+    addConstraint(NSLayoutConstraint(item: cancelButton, attribute: .bottom,
+                                     relatedBy: .equal, toItem: self, attribute: .bottom,
+                                     multiplier: 1, constant: 0))
 
-    addConstraint(NSLayoutConstraint(item: doneButton, attribute: .centerX,
-      relatedBy: .equal, toItem: self, attribute: .right,
-      multiplier: 1, constant: -(UIScreen.main.bounds.width - (ButtonPicker.Dimensions.buttonBorderSize + UIScreen.main.bounds.width)/2)/2))
-
-    // UPdate by mbecker; item 'stackView' to 'cancelButton'; changed constant from 'UIScreen.main.bounds.width/4 - ButtonPicker.Dimensions.buttonBorderSize/3))'
-    addConstraint(NSLayoutConstraint(item: cancelButton, attribute: .centerX,
-      relatedBy: .equal, toItem: self, attribute: .left,
-      multiplier: 1, constant: (UIScreen.main.bounds.width - (ButtonPicker.Dimensions.buttonBorderSize + UIScreen.main.bounds.width)/2)/2))
-
+    
+    /* top seperator */
     addConstraint(NSLayoutConstraint(item: topSeparator, attribute: .height,
       relatedBy: .equal, toItem: nil, attribute: .notAnAttribute,
       multiplier: 1, constant: 1))

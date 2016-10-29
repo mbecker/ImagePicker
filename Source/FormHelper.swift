@@ -23,3 +23,14 @@ extension UIImage {
     return image!
   }
 }
+
+extension String {
+  
+  func range(from: Int, to: Int) -> String {
+    let offset = to - self.characters.count
+    let start = self.index(self.startIndex, offsetBy: from)
+    let end = self.index(self.endIndex, offsetBy: offset)
+    let range = start..<end
+    return self[range]
+  }
+}

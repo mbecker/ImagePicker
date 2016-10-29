@@ -26,7 +26,6 @@ class BottomView: UIView {
 //    textLabel.frame = CGRect(x: 100, y: 0, width: frame.size.width - 100, height: frame.height)
     textLabel.font = UIFont.preferredFont(forTextStyle: .body)
     cancelButton.titleLabel?.font = Configuration.flashButton
-    textLabel.text = "Info"
     textLabel.textColor = UIColor(red:0.19, green:0.26, blue:0.35, alpha:1.00)
     textLabel.sizeToFit()
     textLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -38,10 +37,10 @@ class BottomView: UIView {
     cancelButton.backgroundColor = UIColor.clear
     cancelButton.translatesAutoresizingMaskIntoConstraints = false
     
-    doneButton.setTitle("Upload", for: UIControlState())
+    doneButton.setTitle("Done", for: UIControlState())
     doneButton.titleLabel?.font = Configuration.doneButton
-    doneButton.setTitleColor(UIColor(red:0.10, green:0.71, blue:0.57, alpha:1.00), for: .normal) // Flat Mint
-    doneButton.setTitleColor(UIColor(red:0.09, green:0.59, blue:0.48, alpha:1.00), for: .highlighted) // Mint Dark
+    doneButton.setTitleColor(UIColor(red:0.09, green:0.10, blue:0.12, alpha:1.00), for: .normal)
+    doneButton.setTitleColor(UIColor(red:0.09, green:0.10, blue:0.12, alpha:1.00).withAlphaComponent(0.6), for: .highlighted)
     doneButton.backgroundColor = UIColor.clear
     doneButton.translatesAutoresizingMaskIntoConstraints = false
     

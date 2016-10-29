@@ -36,7 +36,6 @@ open class BottomContainerView: UIView {
 
   open lazy var doneButton: UIButton = { [unowned self] in
     let button = UIButton()
-    button.frame = CGRect(x: 0, y: 0, width: 80, height: Dimensions.height)
     // Added by mbecker: Change background to clear
     button.backgroundColor = UIColor.clear
     button.setTitle(Configuration.doneButtonTitle, for: UIControlState())
@@ -50,12 +49,13 @@ open class BottomContainerView: UIView {
     // Addey by mbecker: Set image chevron right
     let btnImage = AssetManager.getImage("ic_chevron_right_36pt")
     button.setImage(btnImage, for: UIControlState())
-    button.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, (button.imageView?.frame.size.width)!);
-    button.imageEdgeInsets = UIEdgeInsetsMake(0, (button.titleLabel?.frame.size.width)! + 20, 0, -(button.titleLabel?.frame.size.width)!);
+//    button.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, (button.imageView?.frame.size.width)!);
+//    button.imageEdgeInsets = UIEdgeInsetsMake(0, (button.titleLabel?.frame.size.width)! + 20, 0, -(button.titleLabel?.frame.size.width)!);
   
-//    button.transform = CGAffineTransform(scaleX: -1.0, y: 0.0)
-//    button.titleLabel?.transform = CGAffineTransform(scaleX: -1.0, y: 0.0)
-//    button.imageView?.transform = CGAffineTransform(scaleX: -1.0, y: 0.0)
+    button.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
+    button.titleLabel?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
+    button.imageView?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
+    
     
 
     return button

@@ -93,6 +93,9 @@ open class ImagePickerController: UIViewController {
   open override func viewDidLoad() {
     super.viewDidLoad()
     
+    // Show Form Table
+    let formViewController = FormViewController()
+    self.navigationController?.pushViewController(formViewController, animated: false)
 
     for subview in [cameraController.view, galleryView, bottomContainer, topView] {
       view.addSubview(subview!)
@@ -556,25 +559,14 @@ extension ImagePickerController: TOCropViewControllerDelegate {
   
   
   @objc(cropViewController:original:didCropToImage:withRect:angle:) public func cropViewController(_ cropViewController: TOCropViewController, original originalImage: UIImage, didCropTo image: UIImage, with cropRect: CGRect, angle: Int) {
-    let formController = FormController()
-    formController.delegate = self
-    formController.originalImage = originalImage
-    formController.resizedImage = image
-    self.navigationController?.pushViewController(formController, animated: false)
+//    let formController = FormController()
+//    formController.delegate = self
+//    formController.originalImage = originalImage
+//    formController.resizedImage = image
+//    self.navigationController?.pushViewController(formController, animated: false)
     
+    let formTableViewController = FormTableViewController()
+    self.navigationController?.pushViewController(formTableViewController, animated: false)
   }
   
 }
-
-extension ImagePickerController: FormControllerDelegate {
-  
-  public func formDone(original: [UIImage], images: [UIImage]) {
-    self.delegate?.doneButtonDidPress(self, original: original, images: images)
-  }
-  
-  public func formCancel() {
-    self.navigationController?.popViewController(animated: false)
-  }
-  
-}
-

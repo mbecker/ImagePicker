@@ -3,10 +3,7 @@ import UIKit
 protocol BottomContainerViewDelegate: class {
 
   func pickerButtonDidPress()
-  func doneButtonDidPress()
-  func cancelButtonDidPress()
-  // UPdate bey mbecker: Not necessary
-  //  func imageStackViewDidPress()
+    
 }
 
 open class BottomContainerView: UIView {
@@ -34,49 +31,6 @@ open class BottomContainerView: UIView {
     return view
     }()
 
-  open lazy var doneButton: UIButton = { [unowned self] in
-    let button = UIButton()
-    // Added by mbecker: Change background to clear
-    button.backgroundColor = UIColor.clear
-    button.setTitle(Configuration.doneButtonTitle, for: UIControlState())
-    // Added by mbecker: Change color of cancel button to Configuration
-    button.setTitleColor(Configuration.doneButtonColor, for: .normal)
-    button.setTitleColor(Configuration.doneButtonColor.withAlphaComponent(0.6), for: .highlighted)
-    
-    button.titleLabel?.font = Configuration.doneButton
-    button.addTarget(self, action: #selector(doneButtonDidPress(_:)), for: .touchUpInside)
-    
-    // Addey by mbecker: Set image chevron right
-    let btnImage = AssetManager.getImage("ic_chevron_right_36pt")
-    button.setImage(btnImage, for: UIControlState())
-//    button.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, (button.imageView?.frame.size.width)!);
-//    button.imageEdgeInsets = UIEdgeInsetsMake(0, (button.titleLabel?.frame.size.width)! + 20, 0, -(button.titleLabel?.frame.size.width)!);
-  
-    button.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
-    button.titleLabel?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
-    button.imageView?.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
-    
-    
-
-    return button
-    }()
-  
-  open lazy var cancelButton: UIButton = { [unowned self] in
-    let button = UIButton()
-    // Added by mbecker: Change background to clear
-    button.backgroundColor = UIColor.clear
-    button.setTitle(Configuration.cancelButtonTitle, for: UIControlState())
-    // Added by mbecker: Change color of cancel button to Configuration
-    button.setTitleColor(Configuration.cancelButtonColor, for: .normal)
-    button.setTitleColor(Configuration.cancelButtonColor.withAlphaComponent(0.6), for: .highlighted)
-    button.titleLabel?.font = Configuration.doneButton
-    button.addTarget(self, action: #selector(cancelButtonDidPress(_:)), for: .touchUpInside)
-    
-    return button
-    }()
-  
-  // UPdate by mbecker. NO stackview anymore
-  //  lazy var stackView = ImageStackView(frame: CGRect(x: 0, y: 0, width: 80, height: 80))
 
   lazy var topSeparator: UIView = { [unowned self] in
     let view = UIView()
@@ -84,14 +38,6 @@ open class BottomContainerView: UIView {
 
     return view
     }()
-
-  // Update by mbecker: NOt necessary beacuse no imagestackview
-//  lazy var tapGestureRecognizer: UITapGestureRecognizer = { [unowned self] in
-//    let gesture = UITapGestureRecognizer()
-//    gesture.addTarget(self, action: #selector(handleTapGestureRecognizer(_:)))
-//
-//    return gesture
-//    }()
 
   weak var delegate: BottomContainerViewDelegate?
   var pastCount = 0
@@ -101,16 +47,13 @@ open class BottomContainerView: UIView {
   public override init(frame: CGRect) {
     super.init(frame: frame)
     
-    [borderPickerButton, pickerButton, doneButton, cancelButton, topSeparator].forEach {
+    [borderPickerButton, pickerButton, topSeparator].forEach {
       addSubview($0)
       $0.translatesAutoresizingMaskIntoConstraints = false
     }
 
     backgroundColor = Configuration.backgroundColor
-    
-    // Update by mbecker: No imagestackview anymore
-//    stackView.accessibilityLabel = "Image stack"
-//    stackView.addGestureRecognizer(tapGestureRecognizer)
+
 
     setupConstraints()
   }
@@ -120,27 +63,6 @@ open class BottomContainerView: UIView {
   }
 
   // MARK: - Action methods
-
-  func doneButtonDidPress(_ button: UIButton) {
-//    if button.currentTitle == Configuration.cancelButtonTitle {
-//      delegate?.cancelButtonDidPress()
-//    } else {
-//      delegate?.doneButtonDidPress()
-//    }
-    
-    // Update by mbecker: Only buttonDidPress
-    delegate?.doneButtonDidPress()
-  }
-  
-  // Addey by mbecker
-  func cancelButtonDidPress(_ button: UIButton) {
-    delegate?.cancelButtonDidPress()
-  }
-
-  // Update by mbecker: NO protocol imagestackviewdidpress anymore
-//  func handleTapGestureRecognizer(_ recognizer: UITapGestureRecognizer) {
-//    delegate?.imageStackViewDidPress()
-//  }
 
   fileprivate func animateImageView(_ imageView: UIImageView) {
     imageView.transform = CGAffineTransform(scaleX: 0, y: 0)

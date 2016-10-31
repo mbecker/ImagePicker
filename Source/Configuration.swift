@@ -7,7 +7,7 @@ public struct Configuration {
 //  public static var backgroundColor = UIColor(red: 0.15, green: 0.19, blue: 0.24, alpha: 1)
   public static var backgroundColor = UIColor.white
   public static var seperatorColor = UIColor.white // Line top of bottomview, below gallery slider
-  public static var topSeparatorColor = UIColor(red:0.09, green:0.10, blue:0.12, alpha:1.00).withAlphaComponent(0.6)
+  public static var topSeparatorColor = UIColor(red:0.71, green:0.73, blue:0.75, alpha:1.00)
   public static var mainColor = UIColor(red: 0.09, green: 0.11, blue: 0.13, alpha: 1)
   public static var noImagesColor = UIColor(red: 0.86, green: 0.86, blue: 0.86, alpha: 1)
   public static var noCameraColor = UIColor(red: 0.86, green: 0.86, blue: 0.86, alpha: 1)

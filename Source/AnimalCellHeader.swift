@@ -32,8 +32,6 @@ class AnimalCellHeader: UICollectionReusableView {
     self.button.tintColor = UIColor.white
     //add function for button
     self.button.addTarget(self, action: #selector(self.popBack), for: UIControlEvents.touchUpInside)
-    //set frame
-    self.button.frame = CGRect(x: 16, y: self.frame.size.height / 2 - 32 / 2, width: 32, height: 32)
     
     self.addSubview(self.textLabel)
     self.addSubview(self.button)
@@ -46,7 +44,7 @@ class AnimalCellHeader: UICollectionReusableView {
   
   override func layoutSubviews() {
     self.textLabel.frame = self.frame
-    self.button.frame = CGRect(x: 16, y: self.frame.size.height / 2 - 32 / 2, width: 32, height: 32)
+    self.button.frame = CGRect(x: 0, y: 0, width: 64, height: 64)
   }
   
   func popBack(){

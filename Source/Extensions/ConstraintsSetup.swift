@@ -40,38 +40,38 @@ extension BottomContainerView {
     
 
     /* done button */
-    addConstraint(NSLayoutConstraint(item: doneButton, attribute: .right,
-                                     relatedBy: .equal, toItem: self, attribute: .right,
-                                     multiplier: 1, constant: 0))
-    
-    addConstraint(NSLayoutConstraint(item: doneButton, attribute: .width,
-                                     relatedBy: .equal, toItem: nil, attribute: .notAnAttribute,
-                                     multiplier: 1, constant: 100))
-    
-    addConstraint(NSLayoutConstraint(item: doneButton, attribute: .top,
-                                     relatedBy: .equal, toItem: self, attribute: .top,
-                                     multiplier: 1, constant: 0))
-    
-    addConstraint(NSLayoutConstraint(item: doneButton, attribute: .bottom,
-                                     relatedBy: .equal, toItem: self, attribute: .bottom,
-                                     multiplier: 1, constant: 0))
+//    addConstraint(NSLayoutConstraint(item: doneButton, attribute: .right,
+//                                     relatedBy: .equal, toItem: self, attribute: .right,
+//                                     multiplier: 1, constant: 0))
+//    
+//    addConstraint(NSLayoutConstraint(item: doneButton, attribute: .width,
+//                                     relatedBy: .equal, toItem: nil, attribute: .notAnAttribute,
+//                                     multiplier: 1, constant: 100))
+//    
+//    addConstraint(NSLayoutConstraint(item: doneButton, attribute: .top,
+//                                     relatedBy: .equal, toItem: self, attribute: .top,
+//                                     multiplier: 1, constant: 0))
+//    
+//    addConstraint(NSLayoutConstraint(item: doneButton, attribute: .bottom,
+//                                     relatedBy: .equal, toItem: self, attribute: .bottom,
+//                                     multiplier: 1, constant: 0))
     
     /* cancel button */
-    addConstraint(NSLayoutConstraint(item: cancelButton, attribute: .left,
-                                     relatedBy: .equal, toItem: self, attribute: .left,
-                                     multiplier: 1, constant: 0))
-    
-    addConstraint(NSLayoutConstraint(item: cancelButton, attribute: .width,
-                                     relatedBy: .equal, toItem: nil, attribute: .notAnAttribute,
-                                     multiplier: 1, constant: 100))
-    
-    addConstraint(NSLayoutConstraint(item: cancelButton, attribute: .top,
-                                     relatedBy: .equal, toItem: self, attribute: .top,
-                                     multiplier: 1, constant: 0))
-    
-    addConstraint(NSLayoutConstraint(item: cancelButton, attribute: .bottom,
-                                     relatedBy: .equal, toItem: self, attribute: .bottom,
-                                     multiplier: 1, constant: 0))
+//    addConstraint(NSLayoutConstraint(item: cancelButton, attribute: .left,
+//                                     relatedBy: .equal, toItem: self, attribute: .left,
+//                                     multiplier: 1, constant: 0))
+//    
+//    addConstraint(NSLayoutConstraint(item: cancelButton, attribute: .width,
+//                                     relatedBy: .equal, toItem: nil, attribute: .notAnAttribute,
+//                                     multiplier: 1, constant: 100))
+//    
+//    addConstraint(NSLayoutConstraint(item: cancelButton, attribute: .top,
+//                                     relatedBy: .equal, toItem: self, attribute: .top,
+//                                     multiplier: 1, constant: 0))
+//    
+//    addConstraint(NSLayoutConstraint(item: cancelButton, attribute: .bottom,
+//                                     relatedBy: .equal, toItem: self, attribute: .bottom,
+//                                     multiplier: 1, constant: 0))
 
     
     /* top seperator */

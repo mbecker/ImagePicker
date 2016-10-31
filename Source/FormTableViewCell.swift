@@ -94,6 +94,7 @@ class FormTableViewCell: UITableViewCell {
   func addDoneButtonOnKeyboard() {
     let doneToolbar: UIToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 50))
     doneToolbar.barStyle       = UIBarStyle.default
+    doneToolbar.barTintColor    = UIColor.white
     let flexSpace              = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
     let done: UIBarButtonItem  = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.done, target: self, action: #selector(self.doneButtonAction))
     
@@ -126,7 +127,9 @@ extension FormTableViewCell : UITextFieldDelegate {
    *     Use that method to allow or prevent the editing of the text field’s contents.
    */
   func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-    
+    if self.textField.text == self.placeholder {
+        self.textField.text = ""
+    }
     return true
   }
   
@@ -135,9 +138,15 @@ extension FormTableViewCell : UITextFieldDelegate {
    *     Use that method to validate the current text.
    */
   public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-    
+    self.textField.resignFirstResponder()
     return true
   }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField.text?.characters.count == 0 {
+            textField.text = placeholder
+        }
+    }
   
   
 }
@@ -216,8 +225,6 @@ class FormTableLabelCell: UITableViewCell {
   
   override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
-    
-    
   }
   
   override func layoutSubviews() {
@@ -245,12 +252,8 @@ class FormTableLabelCell: UITableViewCell {
         NSForegroundColorAttributeName: UIColor(red:0.24, green:0.24, blue:0.24, alpha:1.00), // Baltic sea
         NSKernAttributeName: 0.6,
         ])
-    
-    
-    
   }
-  
-  
+    
   override func awakeFromNib() {
     super.awakeFromNib()
     // Initialization code
@@ -260,5 +263,56 @@ class FormTableLabelCell: UITableViewCell {
     super.setSelected(selected, animated: animated)
   }
   
+}
+
+
+/**
+ * FormTableImageCell
+ */
+class FormTableImageCell: UITableViewCell {
+    
+    let spotImageView = UIImageView()
+    
+    required init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:)")
+    }
+    
+    init(style: UITableViewCellStyle, reuseIdentifier: String?, image: UIImage){
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+        self.spotImageView.image = image.resizedImageWithinRect(rectSize: CGSize(width: 375, height: 300))
+        self.spotImageView.contentMode = .redraw
+        self.spotImageView.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(self.spotImageView)
+        
+    }
+    
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        let top = NSLayoutConstraint(item: self.spotImageView, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: 10)
+        let width = NSLayoutConstraint(item: self.spotImageView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 327.0)
+        let centerX = NSLayoutConstraint(item: self.spotImageView, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1, constant: 0)
+        let centerY = NSLayoutConstraint(item: self.spotImageView, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1, constant: 0)
+        
+        self.addConstraint(top)
+        self.addConstraint(centerX)
+        self.addConstraint(centerY)
+        self.addConstraint(width)
+        print("IMAGE HEIGHT - \(self.frame)")
+    }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        // Initialization code
+    }
+    
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+    }
+    
 }
 
